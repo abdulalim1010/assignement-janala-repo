@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="navbar bg-[#79716B20] shadow-sm justify-around mt-9 px-10">
+        <div class="flex-1">
+          <a class="btn btn-ghost text-xl">English <img src="assets/logo.png" alt="">
+            জানালা</a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1 gap-3">
+            <button class="btn hover:bg-[#422AD5] hover:text-white "> <img src="assets/fa-circle-question.png" alt="">
+              FAQ</button>
+            <button class="btn hover:bg-[#422AD5] hover:text-white"> <img src="assets/fa-book-open.png"
+                alt="">Learn</button>
+            <button id="log-out" class="btn btn-danger hover:bg-[#422AD5] hover:text-white">Log Out</button>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- hero section -->
+    <div class=" lg:flex  justify-between items-center space-y-5 px-10 ">
+      <div>
+        <h1 class=" text-4xl font-bold"><span class="text-[#00BCFF] text-4xl font-bold">English</span> is Easy!!</h1>
+        <p class="text-xl text-[#18181B] py-3">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br>
+          আপনার
+          দক্ষতা
+          বাড়াতে চান, আমাদের Interactive
+          Lessons
+          আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+        <div class="py-3 space-y-3">
+          <input id="name" class="px-3 py-1 rounded" type="text" placeholder="enter your name">
+          <br>
+
+          <input id="password" class="px-3 py-1 rounded" type="password" id="pwd" name="pwd"
+            placeholder="enter your password">
+          <br>
+          <button id="getstar" class="btn btn-primary">Get started</button>
+        </div>
+      </div>
+      <div>
+        <img src="assets/hero-student.png" alt="">
+      </div>
+
+    </div>
+    <div id="loading-spinner" class="hidden flex justify-center items-center py-5">
+      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"></div>
+    </div>
+    <div id="logout-card"
+      class="card absolute w-80 top-10 left-1/2 transform -translate-x-1/2 p-6  bg-green-100 border border-green-500 rounded-md shadow-md text-center hidden">
+      <h2 class="text-2xl font-bold text-green-700">Logout Successful</h2>
+      <p>You have been logged out successfully.</p>
+    </div>
+    <div class="flex justify-center items-center p-10 text-3xl font-bold">
+      <h1><span class="text-[#00BCFF] text-3xl font-bold">Let's</span> Learn Vocabularies</h1>
+    </div>
+    > <!-- get all lesson -->
+    <section id="lesson-container" class="flex gap-4 justify-center">
+
+
+    </section>
+    <section class=" grid grid-cols-3 bg-gray-100 gap-3 w-11/12 mx-auto p-5 mt-10" id="word-container">
+
+    </section>
+
+    <!-- sow lesson select -->
+    <div id="start-time"
+      class="p-10 mt-28 bg-[#79716B20] w-11/12 space-y-3 justify-center items-center rounded-2xl mx-auto">
+      <p class=" flex justify-center items-center text-sm text-[#79716B] ">আপনি এখনো কোন Lesson Select করেন ন</p>
+      <h1 class=" flex justify-center items-center font-bold text-3xl fondt-bold ">একটি Lesson Select করুন।</h1>
+    </div>
+
+    <div id="no-word"
+      class="text-center bg-gray-100 w-11/12 mx-auto p-10 space-y-6  rounded-xl text-xl font-semibold text-gray-600 hidden">
+      <img class="mx-auto" src="assets/alert-error.png" alt="">
+      <p>এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+      <h2 class="text-3xl">নেক্সট Lesson এ যান</h2>
+    </div>
+    <div id="details-container">
+
+    </div>
+
+    <div class="justify-center items-center p-10 text-xl font-semibold">
+      <h1 class="flex justify-center items-center p-10 text-3xl font-bold"><span
+          class="text-[#00BCFF] text-3xl font-bold">Frequently</span> Asked Questions</h1>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" checked="checked" />
+        <div class="collapse-title font-semibold">the difference between `var`, `let`, and `const`?</div>
+        <div class="collapse-content text-sm">
+          Use let and const instead of var to avoid issues related to scope and hoisting. const is typically used for
+          variables
+          whose values won't change, while let is for variables that can be reassigned.
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">
+          the difference between `map()`, `forEach()`, and `filter()`?
+        </div>
+        <div class="collapse-content text-sm">
+
+          map(): Use when need a modified version of the original array (e.g., transforming data).
+          forEach(): Use when just want to perform an action (e.g., logging or modifying external variables) on each
+          element,
+          but don't need a new array.
+          filter(): Use when need a new array with only the elements that pass a condition (e.g., extracting items that
+          meet
+          certain criteria).
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">
+          explain arrow functions and how they are different from regular functions?
+        </div>
+        <div class="collapse-content text-sm">
+          In general, arrow functions are great for simple, concise functions, especially in callbacks and where this
+          should refer
+          to the surrounding context. Regular functions are better suited for object methods, constructors, and
+          situations
+          requiring access to the arguments object.
+
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">
+          how JavaScript Promises work
+        </div>
+        <div class="collapse-content text-sm">
+          Promises are a powerful tool for managing asynchronous operations in JavaScript. By using .then(), .catch(),
+          and
+          chaining, you can handle asynchronous tasks in a more readable and maintainable way compared to traditional
+          callback
+          functions. Additionally, Promise.all(), Promise.race(), Promise.allSettled(), and Promise.any() give you
+          advanced
+          options for dealing with multiple asynchronous operations.
+
+        </div>
+      </div>
+      <div class="collapse collapse-plus bg-base-100 border border-base-300">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title font-semibold">
+          how closures work in JavaScript?
+        </div>
+        <div class="collapse-content text-sm">
+          A closure is a function that has access to its own scope, the scope of the outer function, and the global
+          scope.
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    <div class="flex justify-between border-t-2 p-9 mt-60">
+      <div>
+        <a class="btn btn-ghost text-xl">English <img src="assets/logo.png" alt="">
+          জানালা</a>
+        <br>
+        <div>
+          <h2 class="text-3xl font-bold pt-3">ইংরেজি শিখুন সহজে</h2>
+        </div>
+        <br>
+        <p>Providing ED-Tech Applications since 2025</p>
+      </div>
+      <div class="space-y-4">
+        <p class="text-sm">Follow us</p>
+
+        <div class="flex gap-3">
+          <img src="assets/fb-thumb.png" alt="">
+          <img src="assets/instagram-thumb.png" alt="">
+          <img src="assets/youtube-thumb.png" alt="">
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Open the modal using ID.showModal() method -->
+
+  <script src="indexz.js"></script>
+</body>
+
+</html>
